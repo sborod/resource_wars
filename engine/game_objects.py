@@ -1,4 +1,4 @@
-class GameLogic:
+class GameObjects:
     def __init__(self):
         self.objects = []
 
