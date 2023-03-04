@@ -1,5 +1,7 @@
 import pygame
 
+from engine.input_handler_interface import InputHandlerInterface
+
 class Command:
     def execute(self):
         pass
@@ -32,7 +34,7 @@ class MoveRightCommand(Command):
     def execute(self):
         self.character.move((1, 0))
 
-class CharacterInputHandler:
+class CharacterInputHandler(InputHandlerInterface):
     def __init__(self, character):
         self.character = character
         self.keymap = {
