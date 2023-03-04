@@ -1,7 +1,5 @@
 import unittest
-from character import Character
-from map import Map
-from game import Game
+from model.game import Game
 
 class TestGame(unittest.TestCase):
     def setUp(self):

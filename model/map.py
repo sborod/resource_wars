@@ -1,4 +1,4 @@
-from tile import Tile
+from model.tile import Tile
 
 class Map:
     def __init__(self, width, height):

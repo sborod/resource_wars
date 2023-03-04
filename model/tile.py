@@ -1,4 +1,4 @@
-from inventory import Inventory
+from model.inventory import Inventory
 
 
 class Tile:

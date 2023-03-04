@@ -1,7 +1,7 @@
 import unittest
-from character import Character
-from map import Map
-from tile import Tile
+from model.character import Character
+from model.map import Map
+from model.tile import Tile
 
 class TestMap(unittest.TestCase):
     def setUp(self):

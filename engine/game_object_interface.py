@@ -4,6 +4,3 @@ class GameObjectInterface:
 
     def get_position(self):
         pass
-
-    def set_position(self, pos):
-        pass

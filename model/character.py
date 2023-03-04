@@ -1,6 +1,6 @@
-from inventory import Inventory
-from tile import Tile
-from item_stats import ITEM_STATS
+from model.inventory import Inventory
+from model.tile import Tile
+from model.item_stats import ITEM_STATS
 
 class Character:
     def __init__(self, name, level, health, max_health, strength, evasion, speed, armor, position):

@@ -1,6 +1,5 @@
 import unittest
-from character import Character
-from map import Map
+from model.character import Character
 
 class TestCharacter(unittest.TestCase):
     def setUp(self):

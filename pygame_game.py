@@ -1,11 +1,11 @@
 import pygame
-from character import Character
-from character_game_object import CharacterGameObject
-from game_logic import GameLogic
-from game_object_view import GameObjectView
+from model.character import Character
+from game_objects.character_game_object import CharacterGameObject
+from engine.game_logic import GameLogic
+from views.game_object_view import GameObjectView
 
-from pygame_input_handler import PygameInputHandler
-from pygame_renderer import PygameRenderer
+from input_handlers.character_input_handler import CharacterInputHandler
+from engine.renderer import Renderer
 
 tile_size = 20
 
@@ -18,8 +18,7 @@ class PygameGame:
         self.screen = pygame.display.set_mode((width, height))
         self.clock = pygame.time.Clock()
 
-        # создание окна игры
-        self.renderer = PygameRenderer(width, height, self.screen)
+        self.renderer = Renderer(width, height, self.screen)
 
         # создание игровых объектов и их декораторов
         player = Character("Player", 1, 10, 10, 5, 0, 1, 0, (0, 0))
@@ -32,7 +31,7 @@ class PygameGame:
         enemy_game_object_view = GameObjectView(enemy, "rectangle", (255, 0, 0), tile_size, tile_size)
 
         # инициализация объектов для обработки пользовательского ввода
-        self.input_handler = PygameInputHandler(player)
+        self.character_input_handler = CharacterInputHandler(player.character)
 
         # создание экземпляра GameLogic
         self.game_logic = GameLogic()
@@ -43,15 +42,16 @@ class PygameGame:
         self.renderer.add_object(player_game_object_view)
         self.renderer.add_object(enemy_game_object_view)
 
-    def handle_events(self):
-        events = pygame.event.get()
-
+    def handle_quit_event(self, events):
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
 
-        self.input_handler.handle_input(events)
+    def handle_events(self):
+        events = pygame.event.get()
+        self.handle_quit_event(events)
+        self.character_input_handler.handle_input(events)
 
     def update(self):
         self.handle_events()

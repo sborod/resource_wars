@@ -1,8 +1,8 @@
 import random
-from inventory import Inventory
-from map import Map
-from character import Character
-from player import Player
+from model.inventory import Inventory
+from model.map import Map
+from model.character import Character
+from model.player import Player
 
 class Game:
     def __init__(self):

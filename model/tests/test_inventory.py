@@ -1,6 +1,6 @@
 import unittest
-from game import Game
-from inventory import Inventory
+from model.game import Game
+from model.inventory import Inventory
 
 
 class TestInventory(unittest.TestCase):

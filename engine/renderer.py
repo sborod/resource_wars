@@ -1,13 +1,12 @@
 import pygame
 
-from renderer import Renderer
-
-class PygameRenderer(Renderer):
+class Renderer:
     def __init__(self, width, height, screen):
         self.width = width
         self.height = height
-        self.objects = []
         self.screen = screen
+
+        self.objects = []
 
     def render(self):
         self.screen.fill((255, 255, 255))

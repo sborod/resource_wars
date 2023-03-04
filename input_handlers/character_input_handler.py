@@ -32,9 +32,9 @@ class MoveRightCommand(Command):
     def execute(self):
         self.character.move((1, 0))
 
-class PygameInputHandler:
-    def __init__(self, game_object):
-        self.game_object = game_object
+class CharacterInputHandler:
+    def __init__(self, character):
+        self.character = character
         self.keymap = {
             pygame.K_UP: MoveUpCommand,
             pygame.K_DOWN: MoveDownCommand,
@@ -46,5 +46,5 @@ class PygameInputHandler:
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key in self.keymap:
-                    command = self.keymap[event.key](self.game_object.character)
+                    command = self.keymap[event.key](self.character)
                     command.execute()
