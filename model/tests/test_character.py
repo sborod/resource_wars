@@ -1,5 +1,7 @@
 import unittest
 from model.character import Character
+from model.storage_tile import StorageTile
+from model.tile import Tile
 
 class TestCharacter(unittest.TestCase):
     def setUp(self):
@@ -15,6 +17,16 @@ class TestCharacter(unittest.TestCase):
         self.assertEqual(self.character.speed, 2)
         self.assertEqual(self.character.armor, 1)
         self.assertEqual(self.character.position, (0, 0))
+
+    def test_loot_tile_with_inventory(self):
+        tile = StorageTile((0, 0), {"gold": 10}, {"helmet": 1})
+        self.character.loot(tile)
+        self.assertEqual(self.character.inventory.items, {"helmet": 1})
+
+    def test_loot_tile_with_empty_inventory(self):
+        tile = Tile((0, 0), "empty")
+        self.character.loot(tile)
+        self.assertEqual(self.character.inventory.items, {})
 
     def test_move(self):
         self.character.move((0, 1))

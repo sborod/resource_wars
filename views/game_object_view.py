@@ -1,6 +1,6 @@
-class GameObjectView:
-    def __init__(self, game_object):
-        self.game_object = game_object
+from abc import ABC, abstractmethod
 
-    def get_position(self):
-        return self.game_object.get_position()
+class GameObjectView(ABC):
+    @abstractmethod
+    def render(self, screen):
+        pass

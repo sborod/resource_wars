@@ -16,15 +16,10 @@ class Character:
         self.inventory = Inventory({})
 
     def loot(self, tile):
-        if isinstance(tile, Tile) and tile.inventory is not None:
-            for item, count in tile.inventory.items.items():
-                if item in self.inventory.items:
-                    self.inventory.items[item] += count
-                else:
-                    self.inventory.items[item] = count
-            tile.inventory = None
-            return True
-        return False
+        items = list(tile.inventory.items.items())
+        for item, count in items:
+            self.inventory.add_item(item, count)
+            tile.inventory.remove_item(item, count)
 
     def move(self, delta_position):
         """Move character by delta (dx, dy) on the map."""

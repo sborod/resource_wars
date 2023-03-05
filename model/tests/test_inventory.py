@@ -15,7 +15,6 @@ class TestInventory(unittest.TestCase):
         player_character = self.game.player.characters[0]
         player_character.loot(tile)
         self.assertEqual(player_character.inventory.get_item_amount("helmet"), 1)
-        self.assertIsNone(tile.inventory)
         
 if __name__ == '__main__':
     unittest.main()
