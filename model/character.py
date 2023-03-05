@@ -1,3 +1,4 @@
+import logging
 from model.inventory import Inventory
 from model.tile import Tile
 from model.item_stats import ITEM_STATS
@@ -15,11 +16,15 @@ class Character:
         self.position = position
         self.inventory = Inventory({})
 
-    def loot(self, tile):
-        items = list(tile.inventory.items.items())
+    def get_current_tile(self, game_map):
+        return game_map.get_tile(self.position)
+
+    def loot(self, game_map):
+        current_tile = self.get_current_tile(game_map)
+        items = list(current_tile.inventory.items.items())
         for item, count in items:
             self.inventory.add_item(item, count)
-            tile.inventory.remove_item(item, count)
+            current_tile.inventory.remove_item(item, count)
 
     def move(self, delta_position):
         """Move character by delta (dx, dy) on the map."""
