@@ -3,4 +3,4 @@ class GameObjectInterface:
         pass
 
     def get_position(self):
-        pass
+        return None

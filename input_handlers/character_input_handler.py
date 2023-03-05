@@ -1,6 +1,6 @@
 import pygame
 
-from engine.input_handler_interface import InputHandlerInterface
+from core.input_handler_interface import InputHandlerInterface
 
 class Command:
     def execute(self):
@@ -33,6 +33,15 @@ class MoveRightCommand(Command):
 
     def execute(self):
         self.character.move((1, 0))
+
+class InteractWithStorageCommand(Command):
+    def __init__(self, character, tile):
+        self.character = character
+        self.tile = tile
+
+    def execute(self):
+        if self.tile.tile_type == 'storage':
+            self.character.loot(self.tile.inventory)
 
 class CharacterInputHandler(InputHandlerInterface):
     def __init__(self, character):

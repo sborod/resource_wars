@@ -1,29 +1,30 @@
-from engine.engine import Engine
-from game_objects.character_game_object import CharacterGameObject
-from model.character import Character
-from views.game_object_view import GameObjectView
-
-tile_size = 20
-width, height = 800, 600
-
-engine = Engine(width, height)
+from core.engine import Engine
+from core.game_objects_manager import GameObjectsManager
+from core.game_object_factory import GameObjectFactory
+from core.renderer import Renderer
+from model.storage_tile import StorageTile
+from model.tile import Tile
+from constants import *
 
 # создание игровых объектов
-player = Character("Player", 1, 10, 10, 5, 0, 1, 0, (0, 0))
-enemy = Character("Enemy", 1, 10, 10, 3, 0, 1, 0, (2, 0))
+tile_map = [[Tile((i, j), "empty") for j in range(10)] for i in range(10)]
+tile_map[5][5] = StorageTile((5, 5), {"gold": 10})
 
-player_game_object = CharacterGameObject(player)
-enemy_game_object = CharacterGameObject(enemy)
+player_game_object = GameObjectFactory.create_character_object("Player", 1, 10, 10, 5, 0, 1, 0, (0, 0))
+enemy_game_object = GameObjectFactory.create_character_object("Enemy", 1, 10, 10, 3, 0, 1, 0, (2, 0))
 
-player_game_object_view = GameObjectView(player_game_object, "circle", (0, 0, 255), tile_size, tile_size)
-enemy_game_object_view = GameObjectView(enemy_game_object, "rectangle", (255, 0, 0), tile_size, tile_size)
+game_objects_manager = GameObjectsManager()
 
+for row in tile_map:
+    for tile in row:
+        if isinstance(tile, StorageTile):
+            game_obj = GameObjectFactory.create_tile_object(tile)
+            game_objects_manager.add_object(game_obj, "rectangle", COLOR_BROWN, TILE_SIZE, TILE_SIZE)
+
+game_objects_manager.add_object(player_game_object, "circle", COLOR_BLUE, TILE_SIZE, TILE_SIZE)
+game_objects_manager.add_object(enemy_game_object, "circle", COLOR_RED, TILE_SIZE, TILE_SIZE)
+
+engine = Engine(game_objects_manager)
 engine.set_input_handler(player_game_object.input_handler)
-
-engine.game_objects.add_object(player_game_object)
-engine.game_objects.add_object(enemy_game_object)
-
-engine.renderer.add_object(player_game_object_view)
-engine.renderer.add_object(enemy_game_object_view)
 
 engine.run()

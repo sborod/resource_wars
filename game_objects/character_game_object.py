@@ -1,4 +1,4 @@
-from engine.game_object_interface import GameObjectInterface
+from core.game_object_interface import GameObjectInterface
 from input_handlers.character_input_handler import CharacterInputHandler
 
 class CharacterGameObject(GameObjectInterface):
