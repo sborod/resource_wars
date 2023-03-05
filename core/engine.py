@@ -2,11 +2,10 @@ import sys
 import pygame
 
 class Engine:
-    def __init__(self, game_objects_manager, game_map):
+    def __init__(self, game_objects_manager):
         pygame.init()
         self.clock = pygame.time.Clock()
         self.game_objects_manager = game_objects_manager
-        self.game_map = game_map
         self.input_handler = None
 
     def handle_quit_event(self, events):
@@ -22,7 +21,7 @@ class Engine:
         events = pygame.event.get()
         self.handle_quit_event(events)
         if self.input_handler:
-            self.input_handler.handle_input(events, self.game_map)
+            self.input_handler.handle_input(events)
 
     def update(self):
         self.handle_events()

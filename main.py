@@ -1,7 +1,9 @@
 from core.engine import Engine
+from core.game_controller import GameController
 from core.game_objects_manager import GameObjectsManager
 from core.game_object_factory import GameObjectFactory
 from core.game_map import GameMap
+from input_handlers.input_handler import InputHandler
 from model.storage_tile import StorageTile
 from model.tile import Tile
 from constants import *
@@ -26,7 +28,10 @@ for row in tile_map:
 game_objects_manager.add_object(player_game_object, view_type="shape", shape="circle", color=COLOR_BLUE)
 game_objects_manager.add_object(enemy_game_object, view_type="shape", shape="circle", color=COLOR_RED)
 
-engine = Engine(game_objects_manager, GameMap(tile_map))
-engine.set_input_handler(player_game_object.input_handler)
+game_controller = GameController(player_game_object.character, GameMap(tile_map))
+input_handler = InputHandler(game_controller)
+
+engine = Engine(game_objects_manager)
+engine.set_input_handler(input_handler)
 
 engine.run()
