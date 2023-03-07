@@ -1,6 +1,4 @@
-import logging
 from model.inventory import Inventory
-from model.tile import Tile
 from model.item_stats import ITEM_STATS
 
 class Character:

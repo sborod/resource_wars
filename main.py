@@ -2,8 +2,12 @@ from core.engine import Engine
 from core.game_controller import GameController
 from core.game_objects_manager import GameObjectsManager
 from core.game_object_factory import GameObjectFactory
+from dialogues import DIALOGUES
+from game_objects.NPC_game_object import NPCGameObject
 from game_objects.map_game_object import MapGameObject
 from input_handlers.input_handler import InputHandler
+from model.dialogue_manager import DialogueManager
+from model.npc import NPC
 from model.storage_tile import StorageTile
 from constants import *
 from views.shape_view_factory import ShapeViewFactory
@@ -28,8 +32,20 @@ game_objects_manager.init_tile_objects(map_game_object)
 game_objects_manager.add_object(player_game_object, view_type="shape", shape="circle", color=COLOR_BLUE)
 game_objects_manager.add_object(enemy_game_object, view_type="shape", shape="circle", color=COLOR_RED)
 
-# init game controller and input handler
-game_controller = GameController(player_game_object.character, map_game_object.game_map)
+# create an NPC with a dialogue
+john_npc = NPC("John", 1, 10, 10, 3, 0, 1, 0, (2, 2), DIALOGUES["John"])
+npc_john_game_object = NPCGameObject(john_npc)
+
+# add the NPC to the game_objects_manager
+game_objects_manager.add_object(npc_john_game_object, view_type="shape", shape="circle", color=COLOR_YELLOW)
+
+# init game controller
+game_controller = GameController(map_game_object.game_map)
+
+game_controller.add_character(player_game_object.character)
+game_controller.add_character(npc_john_game_object.character)
+
+# and input handler
 input_handler = InputHandler(game_controller)
 
 # init engine

@@ -9,53 +9,60 @@ class MoveUpCommand(Command):
         self.game_controller = game_controller
 
     def execute(self):
-        self.game_controller.character.move((0, -1))
+        self.game_controller.characters["Player"].move((0, -1))
 
 class MoveDownCommand(Command):
     def __init__(self, game_controller):
         self.game_controller = game_controller
 
     def execute(self):
-        self.game_controller.character.move((0, 1))
+        self.game_controller.characters["Player"].move((0, 1))
 
 class MoveLeftCommand(Command):
     def __init__(self, game_controller):
         self.game_controller = game_controller
 
     def execute(self):
-        self.game_controller.character.move((-1, 0))
+        self.game_controller.characters["Player"].move((-1, 0))
 
 class MoveRightCommand(Command):
     def __init__(self, game_controller):
         self.game_controller = game_controller
 
     def execute(self):
-        self.game_controller.character.move((1, 0))
+        self.game_controller.characters["Player"].move((1, 0))
 
 class LootTileCommand(Command):
     def __init__(self, game_controller):
         self.game_controller = game_controller
 
     def execute(self):
-        self.game_controller.character.loot(self.game_controller.game_map)
+        self.game_controller.characters["Player"].loot(self.game_controller.game_map)
 
 class ShowInventoryCommand(Command):
     def __init__(self, game_controller):
         self.game_controller = game_controller
 
     def execute(self):
-        print("Inventory:", self.game_controller.character.inventory.items)
+        print("Inventory:", self.game_controller.characters["Player"].inventory.items)
 
 class ShowTileLootCommand(Command):
     def __init__(self, game_controller):
         self.game_controller = game_controller
 
     def execute(self):
-        current_tile = self.game_controller.character.get_current_tile(self.game_controller.game_map)
+        current_tile = self.game_controller.characters["Player"].get_current_tile(self.game_controller.game_map)
         if isinstance(current_tile, StorageTile):
             print("Tile loot:", current_tile.inventory.items)
         else:
             print("There is no loot on the current tile")
+
+class InteractWithNPC(Command):
+    def __init__(self, game_controller):
+        self.game_controller = game_controller
+
+    def execute(self):
+        print("John.dialogue:", self.game_controller.characters["John"].dialogue)
 
 class InputHandler(InputHandlerInterface):
     def __init__(self, game_controller):
@@ -68,6 +75,7 @@ class InputHandler(InputHandlerInterface):
             pygame.K_SPACE: LootTileCommand,
             pygame.K_i: ShowInventoryCommand,
             pygame.K_TAB: ShowTileLootCommand,
+            pygame.K_q: InteractWithNPC,
         }
 
     def handle_input(self, events):
