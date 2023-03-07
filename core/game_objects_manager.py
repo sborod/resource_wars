@@ -25,9 +25,9 @@ class GameObjectsManager:
     def add_view_factory(self, view_type, view_factory):
         self.view_factories[view_type] = view_factory
 
-    def init_tile_objects(self, game_map_game_object):
+    def init_tile_objects(self, map_game_object):
         game_objects = []
-        for i, row in enumerate(game_map_game_object.game_map.tiles):
+        for i, row in enumerate(map_game_object.game_map.tiles):
             for j, tile in enumerate(row):
                 game_obj = GameObjectFactory.create_tile_object(tile)
                 game_objects.append(game_obj)
