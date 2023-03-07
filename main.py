@@ -55,6 +55,7 @@ engine = Engine(game_objects_manager)
 
 menu_game_object = MenuGameObject()
 game_objects_manager.add_object(menu_game_object, view_type="menu")
+game_controller.set_menu_game_object(menu_game_object)
 
 engine.set_input_handler(input_handler)
 

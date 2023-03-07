@@ -63,6 +63,7 @@ class InteractWithNPC(Command):
 
     def execute(self):
         print("John.dialogue:", self.game_controller.characters_game_objects["John"].character.dialogue)
+        self.game_controller.menu_game_object.menu.toggle()
 
 class InputHandler(InputHandlerInterface):
     def __init__(self, game_controller):
