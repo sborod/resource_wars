@@ -1,20 +1,24 @@
 import sys
+from typing import List
 import pygame
 
+from core.game_objects_manager import GameObjectsManager
+from input.input_handler import InputHandler
+
 class Engine:
-    def __init__(self, game_objects_manager):
+    def __init__(self, game_objects_manager: GameObjectsManager):
         pygame.init()
         self.clock = pygame.time.Clock()
         self.game_objects_manager = game_objects_manager
         self.input_handler = None
 
-    def handle_quit_event(self, events):
+    def handle_quit_event(self, events: List[pygame.event.Event]):
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-    def set_input_handler(self, input_handler):
+    def set_input_handler(self, input_handler: InputHandler):
         self.input_handler = input_handler
 
     def handle_events(self):

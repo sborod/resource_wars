@@ -1,5 +1,9 @@
+from core.game_objects_manager import GameObjectsManager
+from model.map import Map
+
+
 class GameController:
-    def __init__(self, map, game_objects_manager):
+    def __init__(self, map: Map, game_objects_manager: GameObjectsManager):
         self.characters_game_objects = {}
         self.map = map
         self.game_objects_manager = game_objects_manager
