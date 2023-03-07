@@ -8,6 +8,6 @@ class GameObjects:
     def remove_object(self, obj):
         self.objects.remove(obj)
 
-    def update(self):
+    def update(self, events):
         for obj in self.objects:
-            obj.update()
+            obj.update(events)

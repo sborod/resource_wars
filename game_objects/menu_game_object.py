@@ -9,3 +9,8 @@ class MenuGameObject(GameObjectInterface):
             theme=pygame_menu.themes.THEME_DEFAULT,
             title="Hello"
         )
+        self.menu.disable()
+    
+    def update(self, events):
+        if self.menu.is_enabled():
+            self.menu.update(events)

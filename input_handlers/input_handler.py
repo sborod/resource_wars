@@ -1,4 +1,6 @@
 import pygame
+import pygame_menu
+from constants import FONT_NAME
 from core.command import Command
 
 from core.input_handler_interface import InputHandlerInterface
@@ -62,8 +64,25 @@ class InteractWithNPC(Command):
         self.game_controller = game_controller
 
     def execute(self):
-        print("John.dialogue:", self.game_controller.characters_game_objects["John"].character.dialogue)
+        dialogue = self.game_controller.characters_game_objects["John"].character.dialogue
+        print(dialogue)
+        for option in dialogue.keys():
+            if not dialogue[option]["end"]:
+                submenu = pygame_menu.Menu(
+                    width=400,
+                    height=400,
+                    theme=pygame_menu.themes.THEME_DEFAULT,
+                    title=option
+                )
+                for response in dialogue[option]["response"].split("\n"):
+                    submenu.add.label(response, font_size=20, font_name=FONT_NAME)
+                submenu.add.button("Next", submenu.disable)
+                self.game_controller.menu_game_object.menu.add.button(option, submenu)
+            else:
+                for response in dialogue[option]["response"].split("\n"):
+                    self.game_controller.menu_game_object.menu.add.label(response)
         self.game_controller.menu_game_object.menu.toggle()
+        self.game_controller.menu_game_object.menu.force_surface_cache_update()
 
 class InputHandler(InputHandlerInterface):
     def __init__(self, game_controller):

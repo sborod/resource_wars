@@ -22,10 +22,11 @@ class Engine:
         self.handle_quit_event(events)
         if self.input_handler:
             self.input_handler.handle_input(events)
+        return events
 
     def update(self):
-        self.handle_events()
-        self.game_objects_manager.game_objects.update()
+        events = self.handle_events()
+        self.game_objects_manager.game_objects.update(events)
         
     def render(self):
         self.game_objects_manager.renderer.render()

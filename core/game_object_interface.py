@@ -1,5 +1,5 @@
 class GameObjectInterface:
-    def update(self):
+    def update(self, events):
         pass
 
     def get_position(self):
