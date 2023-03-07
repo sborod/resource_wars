@@ -6,7 +6,6 @@ from dialogues import DIALOGUES
 from game_objects.NPC_game_object import NPCGameObject
 from game_objects.map_game_object import MapGameObject
 from input_handlers.input_handler import InputHandler
-from model.dialogue_manager import DialogueManager
 from model.npc import NPC
 from model.storage_tile import StorageTile
 from constants import *
@@ -21,7 +20,7 @@ map_game_object = MapGameObject(10, 10)
 
 # set custom tiles on the map
 storage_tile = StorageTile((5, 5), {"gold": 10}, {"helmet": 1})
-map_game_object.game_map.set_tile((5, 5), storage_tile)
+map_game_object.map.set_tile((5, 5), storage_tile)
 
 # create enemy and player game objects
 player_game_object = GameObjectFactory.create_character_object("Player", 1, 10, 10, 5, 0, 1, 0, (0, 0))
@@ -40,7 +39,7 @@ npc_john_game_object = NPCGameObject(john_npc)
 game_objects_manager.add_object(npc_john_game_object, view_type="shape", shape="circle", color=COLOR_YELLOW)
 
 # init game controller
-game_controller = GameController(map_game_object.game_map)
+game_controller = GameController(map_game_object.map)
 
 game_controller.add_character(player_game_object.character)
 game_controller.add_character(npc_john_game_object.character)

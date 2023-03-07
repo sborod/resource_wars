@@ -14,11 +14,11 @@ class Character:
         self.position = position
         self.inventory = Inventory({})
 
-    def get_current_tile(self, game_map):
-        return game_map.get_tile(self.position)
+    def get_current_tile(self, map):
+        return map.get_tile(self.position)
 
-    def loot(self, game_map):
-        current_tile = self.get_current_tile(game_map)
+    def loot(self, map):
+        current_tile = self.get_current_tile(map)
         items = list(current_tile.inventory.items.items())
         for item, count in items:
             self.inventory.add_item(item, count)

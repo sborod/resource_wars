@@ -27,7 +27,7 @@ class GameObjectsManager:
 
     def init_tile_objects(self, map_game_object):
         game_objects = []
-        for i, row in enumerate(map_game_object.game_map.tiles):
+        for i, row in enumerate(map_game_object.map.tiles):
             for j, tile in enumerate(row):
                 game_obj = GameObjectFactory.create_tile_object(tile)
                 game_objects.append(game_obj)

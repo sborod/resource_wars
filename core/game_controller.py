@@ -1,7 +1,7 @@
 class GameController:
-    def __init__(self, game_map):
+    def __init__(self, map):
         self.characters = {}
-        self.game_map = game_map
+        self.map = map
     
     def add_character(self, character):
         self.characters[character.name] = character

@@ -37,7 +37,7 @@ class LootTileCommand(Command):
         self.game_controller = game_controller
 
     def execute(self):
-        self.game_controller.characters["Player"].loot(self.game_controller.game_map)
+        self.game_controller.characters["Player"].loot(self.game_controller.map)
 
 class ShowInventoryCommand(Command):
     def __init__(self, game_controller):
@@ -51,7 +51,7 @@ class ShowTileLootCommand(Command):
         self.game_controller = game_controller
 
     def execute(self):
-        current_tile = self.game_controller.characters["Player"].get_current_tile(self.game_controller.game_map)
+        current_tile = self.game_controller.characters["Player"].get_current_tile(self.game_controller.map)
         if isinstance(current_tile, StorageTile):
             print("Tile loot:", current_tile.inventory.items)
         else:
