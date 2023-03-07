@@ -6,7 +6,7 @@ from dialogues import DIALOGUES
 from game_objects.NPC_game_object import NPCGameObject
 from game_objects.map_game_object import MapGameObject
 from game_objects.menu_game_object import MenuGameObject
-from input_handlers.input_handler import InputHandler
+from input.input_handler import InputHandler
 from model.npc import NPC
 from model.storage_tile import StorageTile
 from constants import *
