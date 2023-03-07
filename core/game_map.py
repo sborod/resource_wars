@@ -1,9 +1,16 @@
-class GameMap:
-    def __init__(self, tile_map):
-        self.tiles = tile_map
+from model.tile import Tile
 
-    def get_tile(self, position):
-        x, y = position
-        if x < 0 or x >= len(self.tiles) or y < 0 or y >= len(self.tiles[x]):
-            return None
+
+class GameMap:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.tiles = [[Tile("empty", (i, j)) for j in range(height)] for i in range(width)]
+
+    def get_tile(self, pos):
+        x, y = pos
         return self.tiles[x][y]
+
+    def set_tile(self, pos, tile):
+        x, y = pos
+        self.tiles[x][y] = tile
