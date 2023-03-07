@@ -1,5 +1,7 @@
 import pygame
 
+from constants import COLOR_BLACK
+
 class Renderer:
     def __init__(self, width, height):
         self.width = width
@@ -13,7 +15,7 @@ class Renderer:
         self.objects.append(obj)
 
     def render(self):
-        self.screen.fill((255, 255, 255))
+        self.screen.fill(COLOR_BLACK)
 
         for obj in self.objects:
             obj.render(self.screen)
