@@ -1,7 +1,7 @@
-from views.game_object_view import GameObjectView
+from views.game_object_view import GameObjectViewInterface
 
 
-class MenuView(GameObjectView):
+class MenuView(GameObjectViewInterface):
     def __init__(self, menu_game_object):
         self.menu_game_object = menu_game_object
 

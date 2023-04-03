@@ -1,9 +1,9 @@
 import pygame
 
-from views.game_object_view import GameObjectView
+from views.game_object_view import GameObjectViewInterface
 
 
-class RectangleView(GameObjectView):
+class RectangleView(GameObjectViewInterface):
     def __init__(self, game_object, color, size, tile_size):
         self.game_object = game_object
         self.color = color

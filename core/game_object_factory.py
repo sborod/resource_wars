@@ -1,7 +1,7 @@
 from game_objects.character_game_object import CharacterGameObject
 from game_objects.tile_game_object import TileGameObject
-from game_objects.tile_map_game_object import TileMapGameObject
 from model.character import Character
+from model.tile import Tile
 
 
 class GameObjectFactory:
@@ -11,9 +11,5 @@ class GameObjectFactory:
         return CharacterGameObject(character)
 
     @staticmethod
-    def create_tile_object(tile):
+    def create_tile_object(tile: Tile):
         return TileGameObject(tile)
-
-    @staticmethod
-    def create_tile_map_object(tile_map):
-        return TileMapGameObject(tile_map)

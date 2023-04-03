@@ -1,6 +1,6 @@
-from views.game_object_view import GameObjectView
+from views.game_object_view import GameObjectViewInterface
 
 
-class NullGameObjectView(GameObjectView):
+class NullGameObjectView(GameObjectViewInterface):
     def render(self, screen):
         pass

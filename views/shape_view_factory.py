@@ -1,9 +1,10 @@
+from core.game_object_view_factory import GameObjectViewFactory
 from views.circle_view import CircleView
 from views.null_game_object_view import NullGameObjectView
 from views.rectangle_view import RectangleView
 
 
-class ShapeViewFactory:
+class ShapeViewFactory(GameObjectViewFactory):
     def __init__(self, size, tile_size):
         self.size = size
         self.tile_size = tile_size

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class GameObjectView(ABC):
+class GameObjectViewInterface(ABC):
     @abstractmethod
     def render(self, screen):
         pass
